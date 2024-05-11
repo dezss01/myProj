@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "npm run build:client && npm run build:server",
     "build:client" : "vite build",
-    "build:server": "vite biuld --outDir dist-ssr src/entry-server.js",
+    "build:server": "vite build --outDir dist-ssr --ssr src/entry-server.js",
     "preview": "vite preview"
   },
   "dependencies": {
