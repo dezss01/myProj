@@ -1,11 +1,14 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 import { createPinia } from "pinia";
+import createHttpPlugin from "./plugins/http";
 
 export default function makeApp() {
   const app = createApp(App);
   const pinia = createPinia();
+  const http = createHttpPlugin(pinia);
+
   app.use(pinia);
-  // todo: pinia, router etc
+  app.provide("http", http);
   return { app };
 }

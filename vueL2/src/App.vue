@@ -1,7 +1,9 @@
 <script setup>
+import { inject } from "vue";
 import { useCounterStore } from './store/counter.js'
-import http from './plugins/http.js'
 
+
+const http = inject('http')
 const counterStore = useCounterStore();
 const httpRes = http.get('products/index.php')
 </script>
