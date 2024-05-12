@@ -1,11 +1,12 @@
-import http from "../plugins/http";
-
-export async function all() {
-  const response = await http.get("/products/index.php");
-  return response.data;
-}
-
-export async function one(id) {
-  const response = await http.get(`/products/index.php?id=${id}`);
-  return response.data;
+export default function createCatalogApi(http) {
+  return {
+    async all() {
+      const response = await http.get("/products/index.php");
+      return response.data;
+    },
+    async one(id) {
+      const response = await http.get(`/products/index.php?id=${id}`);
+      return response.data;
+    },
+  };
 }
