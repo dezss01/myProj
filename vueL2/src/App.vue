@@ -1,15 +1,16 @@
 <script setup>
 import { inject } from "vue";
-import { useCounterStore } from './store/counter.js'
-
-
-const http = inject('http')
-const counterStore = useCounterStore();
-const httpRes = http.get('products/index.php')
+const api = inject('api')
+const { useCounter } = inject('store')
+const counterStore = useCounter()
+const r = api.catalog.all()
 </script>
 
 <template>
   <div>
+    <div>
+      {{ r }}
+    </div>
     hi
     <button @click="counterStore.increment">{{ counterStore.count }}</button>
   </div>
