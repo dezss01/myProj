@@ -1,17 +1,16 @@
 import { defineStore } from "pinia";
-import { ref, computed } from "vue";
-import useProductStore from "./products";
+import { ref, computed, inject } from "vue";
 
 export default function createShopStore(cartApi) {
   return defineStore("shop", () => {
+    const productsStore = inject("store").useProducts();
     const cart = ref([]);
     const token = ref(null);
-    const useProduct = useProductStore();
 
     const total = computed(() => {
       // console.log("total");
       return cart.value.reduce((total, cartItem) => {
-        const product = useProduct.getProduct(cartItem.id);
+        const product = productsStore.getProduct(cartItem.id);
         if (product) {
           return total + product.price * cartItem.cnt;
         } else {

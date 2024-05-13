@@ -1,4 +1,5 @@
 import makeApp from "./main";
+// not run it
 
 export default function runApp(url) {
   const { app } = makeApp();

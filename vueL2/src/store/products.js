@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
-export default function useProductStore() {
+export default function createProductsStore() {
   return defineStore("products", () => {
     const products = ref(null);
 
