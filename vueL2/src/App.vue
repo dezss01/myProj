@@ -1,6 +1,7 @@
 <script setup>
 import { inject } from "vue";
 import { RouterView, RouterLink } from "vue-router";
+import AppAlerts from "./components/Alerts.vue";
 const { useCart, useUser } = inject("store");
 
 const cartStore = useCart();
@@ -10,6 +11,7 @@ const userStore = useUser();
 <template>
   <nav>
     <div class="container">
+      <AppAlerts />
       <div class="mt-3 mb-3 d-flex gap-3">
         <div>
           <RouterLink :to="{ name: 'home' }" class="btn btn-success btn-sm"
@@ -22,7 +24,7 @@ const userStore = useUser();
           >
         </div>
         <div>
-          <RouterLink :to="{ name: 'office.profile' }" class="btn btn-success btn-sm"
+          <RouterLink :to="{ name: 'office' }" class="btn btn-success btn-sm"
             >Office</RouterLink
           >
         </div>

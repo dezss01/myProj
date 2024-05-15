@@ -5,10 +5,12 @@ import {
 } from "vue-router";
 import TheHome from "../views/TheHome.vue";
 import TheCatalog from "../views/TheCatalog.vue";
-import OfficePage from "../views/office/Profile.vue";
+import OfficeProfile from "../views/office/Profile.vue";
 import AuthLoginPage from "../views/auth/Login.vue";
 import AppProduct from "../components/Product.vue";
 import e404 from "../components/errors/E404.vue";
+import OfficeBase from "../views/office/Base.vue";
+import OfficeOther from "../views/office/Other.vue";
 
 const routes = [
   {
@@ -22,10 +24,22 @@ const routes = [
     component: TheCatalog,
   },
   {
-    name: "office.profile",
+    name: "office",
     path: "/office",
-    component: OfficePage,
+    component: OfficeBase,
     meta: { auth: true },
+    children: [
+      {
+        name: "office.profile",
+        path: "profile",
+        component: OfficeProfile,
+      },
+      {
+        name: "office.other",
+        path: "other",
+        component: OfficeOther,
+      },
+    ],
   },
   {
     name: "auth.login",

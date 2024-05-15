@@ -23,7 +23,7 @@ export default async function makeApp() {
   app.provide("store", store);
 
   initPagesAuthGuard(router, store.useUser);
-  initErrorsAlerts(http, store.useCounter);
+  initErrorsAlerts(http, store.useAlerts);
 
   if (!import.meta.env.SSR) {
     store.useCart().initCart();
