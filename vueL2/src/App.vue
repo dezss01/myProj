@@ -1,44 +1,57 @@
 <script setup>
 import { inject } from "vue";
-import { RouterView, RouterLink } from 'vue-router'
-const { useShop, useUser } = inject('store');
+import { RouterView, RouterLink } from "vue-router";
+const { useCart, useUser } = inject("store");
 
-const shopStore = useShop();
+const cartStore = useCart();
 const userStore = useUser();
 </script>
 
 <template>
   <nav>
     <div class="container">
-      <!-- <div>
-        <RouterLink :to="{ name: 'home' }">Home</RouterLink>
+      <div class="mt-3 mb-3 d-flex gap-3">
+        <div>
+          <RouterLink :to="{ name: 'home' }" class="btn btn-success btn-sm"
+            >Home</RouterLink
+          >
+        </div>
+        <div>
+          <RouterLink :to="{ name: 'catalog' }" class="btn btn-success btn-sm"
+            >Catalog</RouterLink
+          >
+        </div>
+        <div>
+          <RouterLink :to="{ name: 'office.profile' }" class="btn btn-success btn-sm"
+            >Office</RouterLink
+          >
+        </div>
+        <div>
+          <RouterLink :to="{ name: 'auth.login' }" class="btn btn-success btn-sm"
+            >Auth Login</RouterLink
+          >
+        </div>
       </div>
       <div>
-        <RouterLink :to="{ name: 'catalog' }">Catalog</RouterLink>
-      </div>
-      <div>
-        <RouterLink :to="{ name: 'office.profile' }">Office</RouterLink>
-      </div>
-      <div>
-        <RouterLink :to="{ name: 'auth.login' }">Auth Login</RouterLink>
-      </div> -->
-      <!-- <div>
         <strong>Текущий путь: {{ $route.fullPath }}</strong>
-      </div> -->
+      </div>
       <div class="font-monospace">
         <strong>Статус пользователя: </strong> {{ userStore.isAuth ? "auth" : "guest" }}
       </div>
       <div class="font-monospace">
-        <strong>Корзина с сервера: </strong> {{ shopStore.cart }}
+        <strong>Корзина с сервера: </strong> {{ cartStore.cart }}
       </div>
     </div>
   </nav>
-  <main class="mt-5">
+  <main class="container mt-5">
+    <hr />
+    Тут должна быть страница отображаемая RouterView
+    <hr />
     <RouterView />
   </main>
   <footer>
     <div class="container mt-5">
-      <button class="btn btn-danger" @click="tryLogout">Log out</button>
+      <button class="btn btn-danger" @click="">Хуита</button>
     </div>
   </footer>
 </template>

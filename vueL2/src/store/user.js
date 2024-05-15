@@ -1,14 +1,18 @@
 import { defineStore } from "pinia";
-import { computed, ref } from "vue";
+import { ref, computed } from "vue";
 
 export default function createUserStore() {
   return defineStore("user", () => {
+    let readyResolver = null;
+    const ready = new Promise((resolve) => (readyResolver = resolve));
     const user = ref(null);
-    const userMoney = ref(3000);
     const isAuth = computed(() => user.value !== null);
-    function setUser(usr) {
-      user.value = usr;
+
+    function setUser(newUser) {
+      user.value = newUser;
+      readyResolver();
     }
-    return { user, isAuth, setUser, userMoney };
+
+    return { user, isAuth, ready, setUser };
   });
 }

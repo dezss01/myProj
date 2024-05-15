@@ -1,16 +1,16 @@
 import { defineStore } from "pinia";
-import { ref, computed, inject } from "vue";
+import { ref, computed } from "vue";
 
-export default function createShopStore(cartApi) {
-  return defineStore("shop", () => {
-    const productsStore = inject("store").useProducts();
+export default function createCartStore(useCatalog, cartApi) {
+  return defineStore("cart", () => {
     const cart = ref([]);
     const token = ref(null);
 
     const total = computed(() => {
       // console.log("total");
+      const catalogStore = useCatalog();
       return cart.value.reduce((total, cartItem) => {
-        const product = productsStore.getProduct(cartItem.id);
+        const product = catalogStore.getProduct(cartItem.id);
         if (product) {
           return total + product.price * cartItem.cnt;
         } else {
@@ -74,9 +74,6 @@ export default function createShopStore(cartApi) {
       inCart,
       cartCnt,
       setCnt,
-      // products,
-      // getProduct,
-      // setProducts,
     };
   });
 }

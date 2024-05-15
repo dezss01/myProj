@@ -1,12 +1,10 @@
 import makeApp from "./main";
 // not run it
 
-export default function runApp(url) {
-  const { app } = makeApp();
-  /*
-    router.push(url)
-    await router ready
-    etc
-  */
+export default async function runApp(url) {
+  const { app, router } = await makeApp();
+  router.push(url);
+  await router.isReady();
+
   return { app };
 }

@@ -1,4 +1,8 @@
-import { createRouter, createWebHistory } from "vue-router";
+import {
+  createRouter,
+  createWebHistory,
+  createMemoryHistory,
+} from "vue-router";
 import TheHome from "../views/TheHome.vue";
 import TheCatalog from "../views/TheCatalog.vue";
 import OfficePage from "../views/office/Profile.vue";
@@ -42,20 +46,13 @@ const routes = [
   },
 ];
 
-const router = createRouter({
-  routes,
-  history: createWebHistory(),
-});
+export default function createAppRouter() {
+  const router = createRouter({
+    routes,
+    history: import.meta.env.SSR
+      ? createMemoryHistory(import.meta.env.BASE_URL)
+      : createWebHistory(import.meta.env.BASE_URL),
+  });
 
-// router.beforeEach(function (to, _, next) {
-//   const userStore = useUserStore();
-//   if (to.meta.auth && !userStore.isAuth) {
-//     next({ name: "auth.login" });
-//   } else if (to.meta.guest && userStore.isAuth) {
-//     next({ name: "office.profile" });
-//   } else {
-//     next();
-//   }
-// });
-
-export default router;
+  return router;
+}

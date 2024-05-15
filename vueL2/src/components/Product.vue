@@ -5,12 +5,12 @@ import ProductControls from "./products/ProductControls.vue";
 import ProductReviews from "./../components/products/Reviews.vue";
 import E404 from "./errors/E404.vue";
 
-const productsStore = inject('store').useProducts();
+const catalogStore = inject("store").useCatalog();
 
 const strId = computed(() => useRoute().params.id);
 const id = computed(() => +strId.value);
 const product = computed(() =>
-  /^[1-9]+\d*$/.test(strId.value) ? productsStore.getProduct(id.value) : undefined
+  /^[1-9]+\d*$/.test(strId.value) ? catalogStore.getProduct(id.value) : undefined
 );
 </script>
 
